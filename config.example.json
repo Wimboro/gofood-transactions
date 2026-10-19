@@ -1,0 +1,15 @@
+{
+  "poll_seconds": 5,
+  "page_size": 20,
+  "max_pages_per_poll": 1,
+  "timezone": "Asia/Jakarta",
+  "date_range": "today",
+  "merchant_ids": [],
+  "statuses": ["SETTLEMENT", "CAPTURE", "REFUND", "PARTIAL_REFUND"],
+  "payment_types": ["QRIS", "GOPAY", "OFFLINE_CREDIT_CARD", "OFFLINE_DEBIT_CARD", "CREDIT_CARD"],
+  "database": "data/transactions.db",
+  "access_token": "",
+  "refresh_token": "",
+  "speaker_url": "",
+  "speaker_token": ""
+}
