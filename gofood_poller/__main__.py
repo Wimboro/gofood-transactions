@@ -300,11 +300,16 @@ def _request(url: str, method: str, headers: dict, body: bytes | None = None) ->
             status = response.status
             header_map = dict(response.headers.items())
     except HTTPError as error:
-        raw = error.read()
+        try:
+            raw = error.read()
+        except OSError as read_error:
+            raise ApiError(0, f"network error: {read_error}") from read_error
         status = error.code
         header_map = dict(error.headers.items()) if error.headers else {}
     except URLError as error:
         raise ApiError(0, f"network error: {error.reason}") from error
+    except OSError as error:
+        raise ApiError(0, f"network error: {error}") from error
     try:
         payload = json.loads(raw.decode("utf-8")) if raw else {}
     except json.JSONDecodeError:
